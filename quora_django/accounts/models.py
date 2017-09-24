@@ -7,11 +7,18 @@ from django.urls import reverse
 
 
 class profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	fullname = models.CharField(max_length=100, default='')
+    user = models.CharField(max_length=100,default='')
+    fullname = models.CharField(max_length=100,default='')
+    def __str__(self):
+        return self.User.username
 
-	def __str__(self):
-		return self.user.username
+    def get_absolute_url(self):
+        return reverse('accounts:profile')
 
-	def get_absolute_url(self):
-		return reverse('accounts:profile', kwargs={'pk': self.pk})
+
+
+
+
+
+
+
