@@ -33,8 +33,9 @@ class RegisterView(View):
             password=form.cleaned_data['password']
             #confirm_password=form.cleaned_data['confirm_password']
             user.set_password(password)
-            user = authenticate(username=username, password=password)
             user.save()
+
+            user = authenticate(username=username, password=password)
 
             if user is not None:
                 if user.is_active:
@@ -44,6 +45,11 @@ class RegisterView(View):
 
 class ProfileCreate(CreateView):
     model = profile
-    fields = ['fullname']
+    fields = ['fullname','gender','contact','photo']
     template_name = 'accounts/create_profile.html'
+
+
+class ProfileView(generic.ListView):
+	model = profile
+	template_name= 'accounts/profile.html'
 
