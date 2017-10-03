@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.generic.edit import CreateView
 from django.contrib.auth import authenticate, login
-from django.views.generic import View
+from django.views.generic import View,ListView
 from .forms import Registration
 from .models import profile
 
@@ -43,10 +43,13 @@ class RegisterView(View):
                     return redirect('accounts:profile-create')
         return render(request, self.template_name, {'form': form})
 
+
 class ProfileCreate(CreateView):
+
     model = profile
     fields = ['fullname','gender','contact','photo']
     template_name = 'accounts/create_profile.html'
+
 
 
 class ProfileView(generic.ListView):

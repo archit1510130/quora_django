@@ -16,3 +16,4 @@ class profile(models.Model):
 		return reverse('accounts:profile')
 
 
+
